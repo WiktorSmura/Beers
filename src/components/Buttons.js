@@ -1,6 +1,8 @@
 import React from "react";
+import {useGlobalContext} from "../context";
 
-function Buttons({ filterBeers }) {
+function Buttons() {
+  const {filterBeers} = useGlobalContext();
   return (
     <div className="buttons-container">
       <div className="buttons">

@@ -32,10 +32,11 @@ h1 {
 
 .all-beers {
   margin: 0 auto;
-  display: flex;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  /* flex-flow: row wrap;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   max-width: 1600px;
 }
 
@@ -44,7 +45,7 @@ h1 {
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  width: 90vw;
+  /* width: 90vw; */
 }
 
 .description {
@@ -103,6 +104,10 @@ img {
 
 @media (min-width: 1200px) {
   .beer-card {
-    width: 50%;
+    max-width: 75%;
+    margin: auto;
+  }
+  .all-beers {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
