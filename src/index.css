@@ -102,6 +102,22 @@ img {
   background-color: hsl(185, 94%, 87%);
 }
 
+.search {
+  display: flex;
+  margin: 20px auto;
+  width: 300px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-input {
+  border: none;
+  border-bottom: 1px solid black;
+}
+
 @media (min-width: 1200px) {
   .beer-card {
     max-width: 75%;

@@ -1,23 +1,35 @@
 import React, {useState, useContext, useEffect} from "react";
 
-const url = "https://api.punkapi.com/v2/beers";
+const url1 = "https://api.punkapi.com/v2/beers";
+const url2 = "https://api.punkapi.com/v2/beers?beer_name=";
 const AppContext = React.createContext();
 
 const AppProvider = ({children}) => {
   const [loading, setLoading] = useState(true);
   const [beers, setBeers] = useState([]);
   const [safeBeers, setSafeBeers] = useState([]);
+  const [searchText, setSearchText] = useState("")
 
   const fetchBeers = async () => {
-    const response = await fetch(url);
+    const response = await fetch(`${url1}`);
     const data = await response.json();
     setSafeBeers(data);
+    setBeers(data);
+  };
+
+  const refetchBeers = async () => {
+    const response = await fetch(`${url2}${searchText}`);
+    const data = await response.json();
     setBeers(data);
   };
 
   useEffect(() => {
     fetchBeers().then(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    refetchBeers();
+  }, [searchText]);
 
   const filterBeers = (power) => {
     if (power === "light") {
@@ -37,7 +49,7 @@ const AppProvider = ({children}) => {
   };
 
   return (
-    <AppContext.Provider value={{loading, beers, filterBeers}}>
+    <AppContext.Provider value={{loading, beers, filterBeers, setSearchText, searchText}}>
       {children}
     </AppContext.Provider>
   )
